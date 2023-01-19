@@ -1,0 +1,52 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /photo:
+    get:
+      tags:
+        - photo
+      summary: get photo
+      operationId: getPhoto
+      responses:
+        400:
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        200:
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPhotoResponse'
+        500:
+          description: 'internal error'
+      x-amazon-apigateway-integration:
+        httpMethod: post
+        type: aws_proxy
+        uri:
+          Fn::Sub:
+            arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetPhotoLambda.Arn}:live/invocations
+      x-amazon-apigateway-auth:
+        type: AWS_IAM
+
+components:
+  schemas:
+    GetPhotoResponse:
+      type: object
+      properties:
+        checkState:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
