@@ -16,13 +16,13 @@ Resources:
     Properties:
       Handler: hello-world/src/handlers/get-photo.handler
       Description: Get photo
+      Runtime: nodejs14.x
       Policies:
         - AWSLambdaVPCAccessExecutionRole
       Events:
         Api:
           Type: Api
           Properties:
-            RestApiId: !Ref CheckIssuingServiceGateway
             Path: /photo
             Method: GET
 
