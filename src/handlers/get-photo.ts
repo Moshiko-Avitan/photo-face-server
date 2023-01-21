@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
 import { getPhotoAfterProcess } from '../api/process-photo';
 
-export const handler = async (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> => {
+const handler = async (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> => {
     try {
         console.log(`Run check-report-handler - ${JSON.stringify(event.body)}`);
 
@@ -17,3 +17,5 @@ export const handler = async (event: APIGatewayProxyEvent, context: Context): Pr
         throw error;
     }
 };
+
+module.exports(handler);

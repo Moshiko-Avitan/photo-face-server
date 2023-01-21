@@ -14,7 +14,7 @@ Resources:
   GetPhotoLambda:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: hello-world/src/handlers/get-photo.handler
+      Handler: src/handlers/get-photo.ts
       Description: Get photo
       Runtime: nodejs14.x
       Policies:
@@ -29,8 +29,7 @@ Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: hello-world/
-      Handler: app.lambdaHandler
+      Handler: src/handlers/app.lambdaHandler
       Runtime: nodejs14.x
       Architectures:
         - x86_64
